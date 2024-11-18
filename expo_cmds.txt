@@ -1,1 +1,2 @@
 npx create-expo-app --template tabs@50
+npm i react-native-reanimated

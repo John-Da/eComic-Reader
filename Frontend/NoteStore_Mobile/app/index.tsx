@@ -1,14 +1,18 @@
-import { Image, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native'
+import { Image, Platform, Pressable, SafeAreaView, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
 import AppColors from '@/constants/AppColors'
-import { useRouter } from 'expo-router';
+import { router } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+
 
 const Splash = () => {
     const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = useWindowDimensions();
-    const router = useRouter();
     
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} backgroundColor="transparent" translucent />
+      
       <View style={[styles.imgContainer, { width: SCREEN_WIDTH, height: SCREEN_HEIGHT }]}>
         <Image
           style={styles.image}
@@ -18,24 +22,24 @@ const Splash = () => {
         />
         <View style={styles.overlayImg} />
       </View>
-      <View style={[styles.contentBox, { top: SCREEN_HEIGHT * 0.35 }]}>
+      <Animated.View entering={FadeInDown.duration(400).delay(200).springify()} style={[styles.contentBox, { top: SCREEN_HEIGHT * 0.35 }]}>
         <View style={styles.txtContainer}>
           <Text style={styles.sloganTxt}>Your Library, Anytime, Anywhere</Text>
           <Text style={styles.brandTxt}>NoteStore</Text>
         </View>
-      </View>
-      {/* Get Started Button */}
-      <View style={styles.getStartBtnContainer}>
-        <TouchableOpacity
+      </Animated.View>
+
+      <Animated.View entering={FadeInDown.duration(700).delay(400).springify()} style={styles.getStartBtnContainer}>
+        <Pressable
           style={styles.getStartBtn}
           onPress={() => router.push('/(tabs)')}
           accessibilityLabel="Get Started"
           accessibilityRole="button"
         >
           <Text style={styles.btnTxt}>Get Started</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+        </Pressable>
+      </Animated.View>
+    </SafeAreaView>
   )
 }
 
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.whiteColor,
       },
     imgContainer: {
-        position: 'relative',
+        ...StyleSheet.absoluteFillObject,
       },
     image: {
         width: '100%',
@@ -71,10 +75,9 @@ const styles = StyleSheet.create({
         zIndex: 2,
         padding: 10,
         width: '90%',
-        borderRadius: 10,
         alignSelf: 'center',
       },
-    txtContainer: {
+      txtContainer: {
         textAlign: 'left',
         marginTop: 40,
       },
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
       },
     brandTxt: {
-        fontSize: 48,
+        fontSize: 52,
         fontWeight: 'bold',
         color: AppColors.whiteColor,
       },
