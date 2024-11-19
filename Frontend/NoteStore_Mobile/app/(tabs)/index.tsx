@@ -8,6 +8,7 @@ import Header from '@/components/Home/Header';
 import { SearchBar } from '@/components/gloabal/SearchBar';
 import Listings from '@/components/Home/Listings';
 import books from '@/data/books.json';
+import ExploreMore from '@/components/Home/ExploreMore';
 
 const Home = () => {
 
@@ -40,20 +41,18 @@ const Home = () => {
               showsVerticalScrollIndicator={false} 
               contentContainerStyle={styles.scrollContents}
             >
-              <View style={{position:'absolute', width:'100%', marginVertical: 5}}>
-                <Text style={styles.headerTxt}>Find, Share, And Succeed Together...</Text>
+              <Text style={styles.headerTxt}>Find, Share, And Succeed Together...</Text>
 
-                <SearchBar value='' onChangeText={()=>{}} onSearch={()=>{}} />
+              <SearchBar value='' onChangeText={() => {}} onSearch={() => {}} />
 
-                <View style={{ flexDirection: 'column' }}>
-                  {sections.map((section, index) => (
-                    <Listings title={section.title} key={index} books={section.books} />
-                  ))}
-                </View>
-
-
+              <View style={{ flexDirection: 'column', marginVertical: 5 }}>
+                {sections.map((section, index) => (
+                  <Listings title={section.title} key={index} books={section.books} />
+                ))}
               </View>
 
+              <ExploreMore />
+              
             </ScrollView>
           </View>
       </View>
@@ -75,7 +74,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 130,
   },
   scrollContents: {
-    paddingTop: 264,
+    flexGrow: 1,
   },
   contents: {
     paddingHorizontal: 14,

@@ -33,14 +33,13 @@ const styles = StyleSheet.create({
         fontWeight:  'bold',
     },
     headerTxtTwo: {
-        color: theme.colors.white,
+        color: theme.colors.warning,
         fontSize: 24,
         fontWeight:  'bold',
     },
     headerLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 4,
     },
     notificationButton: {
         backgroundColor: theme.colors.white,
