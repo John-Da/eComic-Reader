@@ -1,6 +1,6 @@
 import { Image, Platform, Pressable, SafeAreaView, StyleSheet, Text, useWindowDimensions, View } from 'react-native'
 import React from 'react'
-import AppColors from '@/constants/AppColors'
+import { theme } from '@/constants/theme'
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         position: 'relative',
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: theme.colors.white,
       },
     imgContainer: {
         ...StyleSheet.absoluteFillObject,
@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
       },
     sloganTxt: {
         fontSize: 12,
-        color: AppColors.whiteColor,
+        color: theme.colors.white,
         fontWeight: '300',
       },
     brandTxt: {
         fontSize: 52,
         fontWeight: 'bold',
-        color: AppColors.whiteColor,
+        color: theme.colors.white,
       },
     getStartBtnContainer: {
         width: '100%',
@@ -98,13 +98,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
     getStartBtn: {
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: theme.colors.primary,
         paddingVertical: 12,
         paddingHorizontal: 30,
         borderRadius: 25,
       },
     btnTxt: {
-        color: AppColors.whiteColor,
+        color: theme.colors.white,
         fontSize: 16,
         fontWeight: 'bold',
       },

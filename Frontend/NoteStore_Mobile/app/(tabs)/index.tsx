@@ -1,79 +1,95 @@
-import { ActivityIndicator, Pressable, StyleSheet } from 'react-native';
-import { Text, View } from '@/components/Themed';
-import AppColors from '@/constants/AppColors';
-import { useState } from 'react';
+import { Platform, StyleSheet, Text, View, ScrollView } from 'react-native';
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { theme } from '@/constants/theme';
+import { useHeaderHeight } from '@react-navigation/elements';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Header from '@/components/Home/Header';
+import { SearchBar } from '@/components/gloabal/SearchBar';
+import Listings from '@/components/Home/Listings';
+import books from '@/data/books.json';
 
-export default function TabOneScreen() {
-  const [isPending, setIsPending] = useState(false);
+const Home = () => {
+
+  const sections = [
+    { title: 'Recommended for you', books: books },
+    { title: 'Most Viewed', books: books },
+    { title: 'Most Downloaded', books: books },
+  ];
+
+  const headerHeight = useHeaderHeight();
+  const insets = useSafeAreaInsets();
+
+  const onSeeMore = () => {};
 
   return (
-    <View style={styles.container}>
+    <>
+      <StatusBar 
+        style={Platform.OS === 'ios' ? 'light' : 'auto'} 
+        backgroundColor="transparent" 
+        translucent 
+      />
 
-      {isPending && (
-        <View style={styles.loadingOverlay}>
-          <ActivityIndicator size="large" color={AppColors.whiteColor} />
-          <Text style={styles.loadingText}>Loading...</Text>
-        </View>
-      )}
+      <View style={styles.container}>
+        <View style={[styles.shape, { paddingTop: headerHeight + insets.top }]} />
+        
+        
+          <View style={[styles.contents, { paddingTop: headerHeight + insets.top }]}>
+            <Header />
+            <ScrollView 
+              showsVerticalScrollIndicator={false} 
+              contentContainerStyle={styles.scrollContents}
+            >
+              <View style={{position:'absolute', width:'100%', marginVertical: 5}}>
+                <Text style={styles.headerTxt}>Find, Share, And Succeed Together...</Text>
 
-      <View style={styles.heroContent} >
-        <Header />
+                <SearchBar value='' onChangeText={()=>{}} onSearch={()=>{}} />
+
+                <View style={{ flexDirection: 'column' }}>
+                  {sections.map((section, index) => (
+                    <Listings title={section.title} key={index} books={section.books} />
+                  ))}
+                </View>
+
+
+              </View>
+
+            </ScrollView>
+          </View>
       </View>
-
-      <View>
-        <View>
-          <Text>Find, Share, And Succeed Together...</Text>
-        </View>
-      </View>
-
-    </View>
+    </>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: AppColors.whiteColor,
+    backgroundColor: theme.colors.white,
     position: 'relative',
-    alignItems: 'center',
   },
-  heroContent: {
-    backgroundColor: AppColors.primaryColor,
-    height: 256,
-    marginBottom: 16,
-    justifyContent: 'flex-start',
+  shape: {
+    backgroundColor: theme.colors.primary,
+    height: 264,
     width: '100%',
-    position: 'relative',
-    paddingTop: 64,
-    borderBottomLeftRadius: 200,
-  },
-  loadingOverlay: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderBottomRightRadius: 130,
   },
-  loadingText: {
-    marginTop: 10,
-    color: AppColors.whiteColor,
-    fontSize: 16,
-    fontWeight: 'bold',
+  scrollContents: {
+    paddingTop: 264,
   },
-  button: {
-    marginTop: 20,
-    backgroundColor: AppColors.primaryColor,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 8,
+  contents: {
+    paddingHorizontal: 14,
+    position:'absolute',
+    height: '100%',
+    zIndex: 5,
+    width:'100%',
   },
-  buttonText: {
-    color: AppColors.whiteColor,
-    fontSize: 16,
-    fontWeight: 'bold',
+  headerTxt: {
+    fontSize: 30,
+    fontWeight: '800',
+    color: theme.colors.white,
+    marginVertical: 20,
   },
 });
+
+export default Home;
