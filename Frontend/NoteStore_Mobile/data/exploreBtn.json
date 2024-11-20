@@ -1,0 +1,14 @@
+[
+    {
+        "name": "All",
+        "icon": "bookshelf"
+    },
+    {
+        "name": "Top Rating",
+        "icon": "medal"
+    },
+    {
+        "name": "New Release",
+        "icon": "book-clock"
+    }
+]
