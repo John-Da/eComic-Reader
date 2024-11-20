@@ -110,10 +110,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     color: theme.colors.black,
-    marginLeft: 8,
+    marginLeft: 5,
   },
   itemReview: {
     fontSize: 12,
+    marginLeft: 5,
     color: '#999',
   },
   ratingContainer: {

@@ -1,10 +1,7 @@
-import { Platform, StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, TextInput } from 'react-native';
-import React from 'react';
+import { Platform, StyleSheet, Text, View, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import React, { useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { theme } from '@/constants/theme';
-import { useHeaderHeight } from '@react-navigation/elements';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Header from '@/components/Home/Header';
 import { SearchBar } from '@/components/gloabal/SearchBar';
 import Listings from '@/components/Home/Listings';
 import books from '@/data/books.json';
@@ -13,60 +10,85 @@ import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 const Home = () => {
-
   const sections = [
     { title: 'Recommended for you', books: books },
     { title: 'Most Viewed', books: books },
     { title: 'Most Downloaded', books: books },
   ];
 
-  const headerHeight = useHeaderHeight();
-  const insets = useSafeAreaInsets();
+  const scrollY = useRef(new Animated.Value(0)).current;
 
-  const onSeeMore = () => {};
+  const handleScroll = (event: any) => {
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    Animated.timing(scrollY, {
+      toValue: currentOffset,
+      duration: 10,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const backgroundColor = scrollY.interpolate({
+    inputRange: [0, 60],
+    outputRange: [theme.colors.primary, theme.colors.background.primary],
+    extrapolate: 'clamp',
+  });
 
   return (
     <>
       <Stack.Screen 
-      options={{
-        headerTransparent: true,
-        headerTitle: '',
-        headerLeft: () => (
-          <View style={{ flexDirection: 'row', marginLeft: 20, marginBottom: 10, height: '100%', alignItems: 'center', paddingRight: 5, }} >
-            <Text style={{fontSize:26, fontWeight:'900', color:theme.colors.white}}>Note</Text>
-            <Text style={{fontSize:26, fontWeight:'900', color:theme.colors.white}}>Store</Text>
-          </View>
-        ),
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              marginRight: 20,
-              backgroundColor: theme.colors.white,
-              padding: 5,
-              borderRadius: theme.borderRadius.full,
-              ...Platform.select({
-                ios: theme.shadows.md,
-                android: theme.shadows.md,
-              }),
-              marginBottom: 10,
-            }}
-          >
-            <Ionicons name="notifications" size={24} color={theme.colors.black} />
-          </TouchableOpacity>
-        ),
-      }}/>
+        options={{
+          headerTitle: '',
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <View style={{ flexDirection: 'row', marginLeft: 20, marginBottom: 10, height: '100%', alignItems: 'center', paddingRight: 5, }} >
+              <Text style={{fontSize:26, fontWeight:'900', color:theme.colors.white}}>Note</Text>
+              <Text style={{fontSize:26, fontWeight:'900', color:theme.colors.white}}>Store</Text>
+            </View>
+          ),
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => {}}
+              style={{
+                marginRight: 20,
+                backgroundColor: theme.colors.white,
+                padding: 5,
+                borderRadius: theme.borderRadius.full,
+                ...Platform.select({
+                  ios: theme.shadows.md,
+                  android: theme.shadows.md,
+                }),
+                marginBottom: 10,
+              }}
+            >
+              <Ionicons name="notifications" size={24} color={theme.colors.black} />
+            </TouchableOpacity>
+          ),
+          headerStyle:{
+            backgroundColor: theme.colors.primary,
+          },
+        }}
+      />
       <StatusBar 
         style={Platform.OS === 'ios' ? 'light' : 'auto'} 
         backgroundColor="transparent" 
         translucent 
       />
 
-      <View style={[styles.container, {paddingTop:headerHeight}]}>
-        <View style={[styles.shape, { paddingTop: headerHeight + insets.top }]} />
-        <ScrollView showsVerticalScrollIndicator={false} >
+      <View style={styles.container}>
+        <Animated.View 
+          style={[
+            styles.shape, 
+            { 
+              backgroundColor: backgroundColor 
+            }
+          ]} 
+        />
+        <ScrollView 
+          showsVerticalScrollIndicator={false}
+          onScroll={handleScroll}
+          scrollEventThrottle={16}
+        >
           <View style={styles.contents}>
-
             <Text style={styles.headerTxt}>Find, Share, And Succeed Together...</Text>
             <SearchBar value='' onChangeText={() => {}} onSearch={() => {}} />
             
@@ -77,7 +99,6 @@ const Home = () => {
             </View>
 
             <ExploreMore />
-        
           </View>
         </ScrollView>
       </View>
@@ -88,12 +109,11 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.colors.white,
+    backgroundColor: theme.colors.background.primary,
     position: 'relative',
   },
   shape: {
-    backgroundColor: theme.colors.primary,
-    height: 264,
+    height: 164,
     width: '100%',
     position: 'absolute',
     borderBottomRightRadius: 130,
