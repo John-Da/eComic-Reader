@@ -33,7 +33,7 @@ export const SearchBar = React.memo(
 const styles = StyleSheet.create({
   searchWrapper: {
     flexDirection: "row",
-    marginVertical: 20,
+    marginVertical: 10,
     alignItems: "center",
     backgroundColor: "transparent",
     padding: 1,

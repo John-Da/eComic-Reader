@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: 2,
+        paddingVertical: 5,
+        paddingBottom: 10,
     },
     headerTxtOne: {
         color: theme.colors.white,

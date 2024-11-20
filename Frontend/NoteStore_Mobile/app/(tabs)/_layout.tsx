@@ -1,40 +1,65 @@
 import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
+import { theme } from '@/constants/theme';
+import { Ionicons } from '@expo/vector-icons';
+import { View } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
+    <Tabs screenOptions={{
+      tabBarStyle:{
+        borderTopWidth: 0,
+        padding: 0,
+        paddingTop: 20,
+        backgroundColor: theme.colors.white,
+      },
+      tabBarShowLabel: false,
+      tabBarActiveTintColor: theme.colors.primary,
+      tabBarInactiveTintColor: theme.colors.gray[100],
+    }}>
+
+    <Tabs.Screen name='index' 
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          tabBarIcon: ({color, focused}) => (
+            <View style={{
+              backgroundColor: focused ? theme.colors.primary : 'transparent',
+              paddingHorizontal: 16, paddingVertical: 12, borderRadius: 10, height: 50,
+            }}>
+              <Ionicons name='compass' size={28} color={focused ? theme.colors.white : theme.colors.gray[500]} />
+            </View>
+          )
         }}
       />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </Tabs>
+      <Tabs.Screen name='notes' 
+      options={{tabBarIcon:({color, focused}) => (
+          <View style={{
+              backgroundColor: focused ? theme.colors.primary : 'transparent',
+              paddingHorizontal: 16, paddingVertical: 12, borderRadius: 10, height: 50,
+            }}>
+              <Ionicons name='book' size={28} color={focused ? theme.colors.white : theme.colors.gray[500]}/>
+          </View>
+      )}} />
+      <Tabs.Screen name='favorites' 
+      options={{tabBarIcon:({color, focused}) => (
+        <View style={{
+              backgroundColor: focused ? theme.colors.primary : 'transparent',
+              paddingHorizontal: 16, paddingVertical: 12, borderRadius: 10, height: 50,
+            }}>
+          <Ionicons name='heart' size={28} color={focused ? theme.colors.white : theme.colors.gray[500]}/>
+        </View>
+      )}} />
+      <Tabs.Screen name='profile' 
+      options={{tabBarIcon:({color, focused}) => (
+        <View style={{
+              backgroundColor: focused ? theme.colors.primary : 'transparent',
+              paddingHorizontal: 16, paddingVertical: 12, borderRadius: 10, height: 50,
+            }}>
+          <Ionicons name='person' size={28} color={focused ? theme.colors.white : theme.colors.gray[500]}/>
+        </View>
+      )}} />
+  </Tabs>
   );
 }
