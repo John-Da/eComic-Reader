@@ -1,4 +1,4 @@
-import { Platform, StyleSheet, Text, View, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { Platform, StyleSheet, Text, View, ScrollView, TouchableOpacity, Animated, SafeAreaView } from 'react-native';
 import React, { useRef } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { theme } from '@/constants/theme';
@@ -8,6 +8,7 @@ import books from '@/data/books.json';
 import ExploreMore from '@/components/Home/ExploreMore';
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Home = () => {
   const sections = [
@@ -34,7 +35,7 @@ const Home = () => {
   });
 
   return (
-    <>
+    <SafeAreaProvider>
       <Stack.Screen 
         options={{
           headerTitle: '',
@@ -68,13 +69,10 @@ const Home = () => {
           },
         }}
       />
-      <StatusBar 
-        style={Platform.OS === 'ios' ? 'light' : 'auto'} 
-        backgroundColor="transparent" 
-        translucent 
-      />
+      
+      <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} backgroundColor="transparent" translucent />
 
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Animated.View 
           style={[
             styles.shape, 
@@ -101,8 +99,8 @@ const Home = () => {
             <ExploreMore />
           </View>
         </ScrollView>
-      </View>
-    </>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 

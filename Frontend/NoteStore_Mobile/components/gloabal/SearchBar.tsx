@@ -13,6 +13,7 @@ export const SearchBar = React.memo(
   ({ value, onChangeText, onSearch }: SearchBarProps) => (
     <View style={styles.searchWrapper}>
       <TextInput
+        onFocus={() => {}}
         style={[styles.input, styles.shadow]}
         placeholder="Search..."
         value={value}
