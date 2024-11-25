@@ -21,7 +21,7 @@ const AllNotes = ({ books }: Props) => {
 
   const RenderItems = ({ item }: any) => {
     return (
-      <Link href={`/notesDetails/${item.id}`} asChild>
+      <Link href={`/noteDetails/${item.id}`} asChild>
         <TouchableOpacity>
           <View style={styles.item}>
             <View style={styles.imgBox}>
