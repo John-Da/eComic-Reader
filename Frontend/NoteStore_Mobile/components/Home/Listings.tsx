@@ -1,7 +1,8 @@
-import { FlatList, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
+import { Link } from 'expo-router';
 
 type Props = {
   title: string;
@@ -14,24 +15,28 @@ const Listings = ({ title, books }: Props) => {
   const onSeeMoreHandler = () => {};
 
   const Item = ({ item }: any) => (
-    <View style={styles.item}>
-      <View style={styles.imgBox}>
-        <Image
-          source={{ uri: item.image || 'fallback-image-uri' }}
-          style={styles.image}
-        />
-      </View>
-      <View style={styles.nameBox}>
-        <Text style={styles.itemTxt} numberOfLines={2}>
-          {item.name}
-        </Text>
-        <View style={styles.ratingContainer}>
-          <Ionicons name="star" size={18} color={theme.colors.primary} />
-          <Text style={styles.itemRating}>{item.rating}</Text>
-          <Text style={styles.itemReview}>({item.reviews})</Text>
+    <Link href={`../noteDetails/${item.id}`} asChild>
+      <TouchableOpacity>
+        <View style={styles.item}>
+        <View style={styles.imgBox}>
+          <Image
+            source={{ uri: item.image || 'fallback-image-uri' }}
+            style={styles.image}
+          />
+        </View>
+        <View style={styles.nameBox}>
+          <Text style={styles.itemTxt} numberOfLines={2}>
+            {item.name}
+          </Text>
+          <View style={styles.ratingContainer}>
+            <Ionicons name="star" size={18} color={theme.colors.primary} />
+            <Text style={styles.itemRating}>{item.rating}</Text>
+            <Text style={styles.itemReview}>({item.reviews})</Text>
+          </View>
         </View>
       </View>
-    </View>
+      </TouchableOpacity>
+    </Link>
   );
 
   return (
