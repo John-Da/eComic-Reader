@@ -43,20 +43,18 @@ export const theme = {
     full: 9999,
   },
   typography: {
-    h1: {
+    head1: {
       fontSize: 32,
-      fontWeight: 'bold',
       lineHeight: 40,
     },
-    h2: {
+    head2: {
       fontSize: 24,
-      fontWeight: 'bold',
       lineHeight: 32,
     },
-    h3: {
+    head3: {
       fontSize: 20,
-      fontWeight: '600',
       lineHeight: 28,
+      color: '#000000',
     },
     body1: {
       fontSize: 16,

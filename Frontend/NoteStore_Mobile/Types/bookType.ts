@@ -15,4 +15,5 @@ interface BookType {
     isbn: string;
     format: string[];
     description: string;
+    download: number;
   }
