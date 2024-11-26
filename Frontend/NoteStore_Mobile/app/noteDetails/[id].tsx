@@ -2,8 +2,9 @@ import { Dimensions, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOp
 import React from 'react'
 import { router, Stack, useLocalSearchParams } from 'expo-router';
 import books from '@/data/books.json';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
+import RatingStars from '@/components/gloabal/RatingStars';
 
 
 const {width} = Dimensions.get('window');
@@ -14,6 +15,8 @@ const NoteDetail = () => {
   const { id } = useLocalSearchParams();
 
   const note = books.find((item) => item.id.toString() === id);
+
+  const ratingFiveStars = ( note )
 
   if (!note) {
     return (
@@ -47,8 +50,32 @@ const NoteDetail = () => {
   <View style={styles.container}>
     <ScrollView showsVerticalScrollIndicator={false}>
       <Image source={{ uri : note.image }} style={styles.image} />
-      <View>
-        
+      <View style={styles.content}>
+        <Text style={[styles.name, theme.typography.head2]}>{note.name}</Text>
+        <Text style={[styles.author, theme.typography.body2]}>by {note.author}</Text>
+
+        <View style={styles.highlights}>
+          <View style={{flexDirection: 'row', gap: 8}}>
+            <RatingStars rating={note.rating} size={14} color={theme.colors.primary} />
+            <Text style={styles.ratingtxt}>{note.rating}</Text>
+          </View>
+          <View style={{flexDirection: 'row', gap: 3}}>
+            <Text>Tags: </Text>
+            {note.format.map((index, format) => (
+              <Text key={index}>{format}</Text>
+            ))}
+          </View>
+
+          <View>
+            <Text>Posted: {note.publish_date}</Text>
+          </View>
+        </View>
+
+        <View>
+          <Text>Summary</Text>
+          <Text>{note.description}</Text>
+        </View>
+
       </View>
     </ScrollView>
   </View>
@@ -73,4 +100,22 @@ const styles = StyleSheet.create({
     width: width,
     height: IMG_HEIGHT
   },
+  content: {
+    paddingHorizontal: 20,
+    paddingTop: 10,
+  },
+  name:{
+    fontWeight: '600'
+  },
+  author: {
+
+  },
+  highlights: {
+
+  },
+  ratingtxt: {
+    fontWeight: '400',
+    fontSize: 14,
+    color: theme.colors.black,
+  }
 })
