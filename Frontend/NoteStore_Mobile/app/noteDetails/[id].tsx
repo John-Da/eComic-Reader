@@ -72,8 +72,8 @@ const NoteDetail = () => {
         </View>
 
         <View>
-          <Text>Summary</Text>
-          <Text>{note.description}</Text>
+          <Text style={[styles.summaryTitle, theme.typography.head3]}>Summary</Text>
+          <Text style={theme.typography.body2}>{note.description}</Text>
         </View>
 
       </View>
@@ -117,5 +117,8 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontSize: 14,
     color: theme.colors.black,
+  },
+  summaryTitle:{
+    fontWeight: '500',
   }
 })

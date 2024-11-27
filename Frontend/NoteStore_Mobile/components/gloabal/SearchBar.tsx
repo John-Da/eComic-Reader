@@ -21,7 +21,7 @@ export const SearchBar = React.memo(
         accessibilityLabel="Search input"
       />
       <TouchableOpacity
-        style={styles.searchButton}
+        style={[styles.searchButton, styles.shadow]}
         onPress={onSearch}
         accessibilityLabel="Search button"
       >

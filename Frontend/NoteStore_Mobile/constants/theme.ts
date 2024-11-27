@@ -80,9 +80,9 @@ export const theme = {
     },
     md: {
       shadowColor: '#333333',
-      shadowOffset: {width:1, height: 2},
-      shadowOpacity: 0.1,
-      shadowRadius: 3,
+      shadowOffset: {width:1, height: 1},
+      shadowOpacity: 0.4,
+      shadowRadius: 4,
       elevation: 3,
     },
     lg: {

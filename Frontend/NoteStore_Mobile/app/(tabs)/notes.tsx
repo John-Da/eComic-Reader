@@ -45,7 +45,9 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 20,
     paddingTop: Platform.OS === 'android' ? 20 : 50, 
+    borderBottomColor: theme.colors.gray[100], 
     backgroundColor: theme.colors.white, 
+    borderBottomWidth: 2,
   },
   container: {
     flex: 1,
@@ -54,9 +56,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
   contentTitle:{
-    fontSize: 23,
+    fontSize: 24,
     fontWeight: '600',
-    marginBottom: 10,
+    paddingVertical: 1,
+    marginVertical: 10,
   },
 
 });
