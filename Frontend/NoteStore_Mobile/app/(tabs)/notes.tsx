@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, Text, View, useColorScheme } from 'react-native';
+import { Platform, StyleSheet, Text, View, useColorScheme } from 'react-native';
 import { Stack } from 'expo-router';
 import { theme } from '@/constants/theme';
 import { useHeaderHeight } from '@react-navigation/elements';
@@ -7,6 +7,7 @@ import { SearchBar } from '@/components/gloabal/SearchBar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import books from '@/data/books.json';
 import AllNotes from '@/components/Notes/allItems';
+import { StatusBar } from 'expo-status-bar';
 
 const NoteScreen = () => {
   const headerHeight = useHeaderHeight();
@@ -28,7 +29,8 @@ const NoteScreen = () => {
         }}
       />
 
-      <StatusBar barStyle={'dark-content'} />
+        <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} backgroundColor="transparent" translucent />
+
 
         <View style={styles.container}>
           <Text style={styles.contentTitle}>Enjoy you day</Text>

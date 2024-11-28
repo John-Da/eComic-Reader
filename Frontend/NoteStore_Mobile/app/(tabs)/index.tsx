@@ -1,6 +1,5 @@
 import { Platform, StyleSheet, Text, View, ScrollView, TouchableOpacity, Animated, SafeAreaView } from 'react-native';
 import React, { useRef } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { theme } from '@/constants/theme';
 import { SearchBar } from '@/components/gloabal/SearchBar';
 import Listings from '@/components/Home/Listings';
@@ -9,6 +8,7 @@ import ExploreMore from '@/components/Home/ExploreMore';
 import { Stack } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 const Home = () => {
   const sections = [

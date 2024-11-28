@@ -90,11 +90,12 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     flex: 1,
     flexDirection: "row",
+    gap: 5,
   },
   imgBox: {
     width: 101,
     height: 133,
-    marginRight: 5,
+    marginRight: 10,
   },
   image: {
     width: "100%",

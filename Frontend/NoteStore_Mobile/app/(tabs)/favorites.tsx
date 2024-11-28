@@ -1,14 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { StatusBar } from 'expo-status-bar';
 
 const FavScreen = () => {
-  return (
+  return (<>
+    <StatusBar style={Platform.OS === 'ios' ? 'light' : 'auto'} backgroundColor="transparent" translucent />
     <View>
       <Text>FavScreen</Text>
     </View>
-  )
-}
+  </>);
+};
 
-export default FavScreen
+export default FavScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
