@@ -1,10 +1,11 @@
 import { Dimensions, Image, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
-import { router, Stack, useLocalSearchParams } from 'expo-router';
+import { Link, router, Stack, useLocalSearchParams } from 'expo-router';
 import books from '@/data/books.json';
 import { Feather } from '@expo/vector-icons';
 import { theme } from '@/constants/theme';
-import RatingStars from '@/components/gloabal/RatingStars';
+import RatingStars from '@/components/global/RatingStars';
+import CustomStatusBar from '@/components/global/CustomStatusBar';
 
 const { width } = Dimensions.get('window');
 const IMG_HEIGHT = 356;
@@ -24,7 +25,7 @@ const NoteDetail = () => {
 
   return (
     <>
-      <StatusBar barStyle="dark-content" showHideTransition="slide" hidden />
+      <StatusBar hidden />
       <Stack.Screen
         options={{
           headerTransparent: true,
@@ -85,12 +86,13 @@ const NoteDetail = () => {
         </ScrollView>
       </View>
 
-
-      <View style={styles.bottomBtnBox}>
-        <TouchableOpacity onPress={() => {}} style={[styles.button, styles.btnReadStart]}>
-          <Text style={[styles.btnTxt, styles.readBtnTxt]}>Read Now</Text>
+      <Link href={`/readMode/${note.id}`} asChild>
+        <TouchableOpacity onPress={() => {}} style={styles.bottomBtnBox}>
+          <View style={[styles.button, styles.btnReadStart]}>
+            <Text style={[styles.btnTxt, styles.readBtnTxt]}>Read Now</Text>
+          </View>
         </TouchableOpacity>
-      </View>
+    </Link>
     </>
   );
 };
