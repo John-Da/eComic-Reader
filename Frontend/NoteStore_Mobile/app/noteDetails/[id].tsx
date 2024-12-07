@@ -67,12 +67,14 @@ const NoteDetail = () => {
                   <RatingStars rating={note.rating} size={26} color={theme.colors.primary} />
                 </View>
                 <View style={styles.tagsContainer}>
-                  <Text style={{ fontSize: 17, fontWeight: '400' }}>Tags: </Text>
-                  {note.format.map((format, index) => (
-                    <View key={index} style={styles.taglayout}>
-                      <Text style={styles.tag}>{format}</Text>
-                    </View>
-                  ))}
+                  <Text style={styles.tagsLabel}>Tags:</Text>
+                  <View style={styles.tagsWrapper}>
+                    {note.format.map((format, index) => (
+                      <View key={index} style={styles.taglayout}>
+                        <Text style={styles.tag}>{format}</Text>
+                      </View>
+                    ))}
+                  </View>
                 </View>
                 <Text style={styles.postedDate}>Posted: {note.publish_date}</Text>
               </View>
@@ -158,11 +160,17 @@ const styles = StyleSheet.create({
     color: theme.colors.secondary,
   },
   tagsContainer: {
+    marginTop: 10,
+  },
+  tagsLabel: {
+    fontSize: 17,
+    fontWeight: '400',
+    marginBottom: 8,
+  },
+  tagsWrapper: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 5,
-    marginTop: 10,
-    alignItems: 'center'
+    gap: 6,
   },
   taglayout: {
     backgroundColor: theme.colors.secondary,
@@ -170,13 +178,14 @@ const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 12,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   tag: {
     color: theme.colors.white,
     fontSize: 12,
     fontWeight: '700',
-    textAlign: 'center'
-  },
+    textAlign: 'center',
+  },  
   postedDate: {
     marginTop: 10,
     color: theme.colors.gray[600],
