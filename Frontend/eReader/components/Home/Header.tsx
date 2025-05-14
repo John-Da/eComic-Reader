@@ -7,8 +7,8 @@ const Header = () => {
   return (
     <View style={styles.header}>
         <View style={styles.headerLeft}>
-            <Text style={styles.headerTxtOne}>Note</Text>
-            <Text style={styles.headerTxtTwo}>Store</Text>
+            <Text style={styles.headerTxtOne}>eBook</Text>
+            <Text style={styles.headerTxtTwo}>Reader</Text>
         </View>
         <TouchableOpacity style={styles.notificationButton}>
             <Ionicons name='notifications' size={22} color={theme.colors.primary} />

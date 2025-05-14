@@ -24,8 +24,8 @@ const Splash = () => {
       </View>
       <Animated.View entering={FadeInDown.duration(400).delay(200).springify()} style={[styles.contentBox, { top: SCREEN_HEIGHT * 0.35 }]}>
         <View style={styles.txtContainer}>
+          <Text style={styles.brandTxt}>eBook Reader</Text>
           <Text style={styles.sloganTxt}>Your Library, Anytime, Anywhere</Text>
-          <Text style={styles.brandTxt}>NoteStore</Text>
         </View>
       </Animated.View>
 
