@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Platform, Dimensions } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { theme } from '@/constants/theme';
-import { Home, NotebookPen, Star, User, LucideIcon } from 'lucide-react-native';
+import { Home, Book, Star, User, LucideIcon } from 'lucide-react-native';
 
 // Define an interface for the icon mapping
 interface TabIconMapping {
@@ -13,7 +13,7 @@ export function BtmTabBar({ state, descriptors, navigation }: BottomTabBarProps)
   // Explicit type annotation for tabIcons
   const tabIcons: TabIconMapping = {
     'index': Home,
-    'notes': NotebookPen,
+    'notes': Book,
     'favorites': Star,
     'profile': User
   };

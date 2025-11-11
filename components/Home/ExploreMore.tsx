@@ -1,17 +1,25 @@
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import exploreBtn from '@/data/exploreBtn.json'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { theme } from '@/constants/theme'
 
 const ExploreMore = () => {
+  const exploreBtn = [
+    {
+        "name": "All",
+        "icon": "bookshelf"
+    },
+    {
+        "name": "Top Rating",
+        "icon": "medal"
+    },
+    {
+        "name": "New Release",
+        "icon": "book-clock"
+    }
+  ]
 
-  const [isPending, setIsPending] = useState(false);
   const handleExploreBtn = (index : number) => {};
-
-  useEffect(() => {
-    setIsPending(true);
-  }, []);
 
 
   return (

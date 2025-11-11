@@ -1,0 +1,62 @@
+[
+  {
+    "id": 3,
+    "uid": "user_3",
+    "name": "Ethan Moore",
+    "role": "reader",
+    "email": "ethan.moore@example.com",
+    "password": "hashed_password",
+    "profile_image": "https://example.com/images/user1.jpg",
+    "join_date": "2023-12-01",
+    "bio": "History fanatic and occasional blogger.",
+    "location": "Boston, USA",
+    "preferences": {
+      "genres": ["History", "Adventure"],
+      "language": "English"
+    },
+    "activity": {
+      "favorites": 0,
+      "uploads": 12
+    }
+  },
+  {
+    "id": 2,
+    "uid": "user_2",
+    "name": "Charlotte Taylor",
+    "role": "uploader",
+    "email": "charlotte.taylor@example.com",
+    "password": "hashed_password",
+    "profile_image": "https://example.com/images/user2.jpg",
+    "join_date": "2023-11-25",
+    "bio": "Lover of classic literature and poetry.",
+    "location": "London, UK",
+    "preferences": {
+      "genres": ["Classics", "Poetry"],
+      "language": "English"
+    },
+    "activity": {
+      "favorites": 15,
+      "uploads": 5
+    }
+  },
+  {
+    "id": 1,
+    "uid": "user_1",
+    "name": "Admin Charlotte",
+    "role": "admin",
+    "email": "admin@example.com",
+    "password": "hashed_password",
+    "profile_image": "https://example.com/images/admin.jpg",
+    "join_date": "2023-11-25",
+    "bio": "Platform administrator and content moderator.",
+    "location": "London, UK",
+    "preferences": {
+      "genres": ["All"],
+      "language": "English"
+    },
+    "activity": {
+      "favorites": 0,
+      "uploads": 0
+    }
+  }
+]

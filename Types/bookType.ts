@@ -1,5 +1,5 @@
 interface BookType {
-    id: number;
+    id: number | string;
     image: string;
     name: string;
     author: string;

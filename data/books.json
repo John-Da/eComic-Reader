@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "image": "https://i.pinimg.com/736x/fe/a1/84/fea1846aed387d82b9ba9c168e19be53.jpg",
+        "name": "The Riddle of the Sea",
+        "author": "Jonne Kramer",
+        "pages": "212",
+        "publish_date": "2020-06-15",
+        "category": "Adventure",
+        "price": 9.99,
+        "rating": 4.5,
+        "reviews": 125,
+        "stock": true,
+        "language": "English",
+        "publisher": "Walker Books",
+        "isbn": "9781406387503",
+        "format": ["Hardcover", "eBook"],
+        "description": "A thrilling maritime adventure of a boy and his journey to uncover the mystery of the sea.",
+        "download": 123,
+        "uploaderId":1
+    }
+]

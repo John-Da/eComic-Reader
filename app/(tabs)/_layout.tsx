@@ -6,7 +6,7 @@ const TabLayout = () => {
   return (
     <Tabs tabBar={(props) => <BtmTabBar {...props} />}>
       <Tabs.Screen name="index" options={{ title: "Home" }} />
-      <Tabs.Screen name="notes" options={{ title: "Notes" }} />
+      <Tabs.Screen name="notes" options={{ title: "Books" }} />
       <Tabs.Screen name="favorites" options={{ title: "Favorites" }} />
       <Tabs.Screen name="profile" options={{ title: "Profile" }} />
     </Tabs>

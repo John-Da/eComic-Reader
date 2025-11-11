@@ -67,7 +67,7 @@ const Home = () => {
                   color: theme.colors.white,
                 }}
               >
-                Note
+                Novle
               </Text>
               <Text
                 style={{
@@ -76,7 +76,7 @@ const Home = () => {
                   color: theme.colors.white,
                 }}
               >
-                Store
+                Reader
               </Text>
             </View>
           ),
@@ -98,7 +98,7 @@ const Home = () => {
               <Ionicons
                 name="notifications"
                 size={24}
-                color={theme.colors.black}
+                color={theme.colors.primary}
               />
             </TouchableOpacity>
           ),
@@ -130,7 +130,7 @@ const Home = () => {
         >
           <View style={styles.contents}>
             <Text style={styles.headerTxt}>
-              Find, Share, And Succeed Together...
+              Let's Read,{"\n"}Books of The Day ...
             </Text>
             <SearchBar value="" onChangeText={() => {}} onSearch={() => {}} />
 
